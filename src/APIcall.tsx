@@ -1,0 +1,37 @@
+export interface APIcall {
+    code: string;
+    currencyCode: string;
+    currencyName: string;
+    country: string;
+    name: string;
+    date: Date;
+    time: number;
+    recurrenceCount: number;
+    basePrice: number;
+    openingPrice: number;
+    highPrice: number;
+    lowPrice: number;
+    change: string;
+    changePrice: number;
+    cashBuyingPrice: number;
+    cashSellingPrice: number;
+    ttBuyingPrice: number;
+    ttSellingPrice: number;
+    tcBuyingPrice: null;
+    fcSellingPrice: null;
+    exchangeCommission: number;
+    usDollarRate: number;
+    high52wPrice: number;
+    high52wDate: Date;
+    low52wPrice: number;
+    low52wDate: Date;
+    currencyUnit: number;
+    provider: string;
+    timestamp: number;
+    id: number;
+    createdAt: Date;
+    modifiedAt: Date;
+    changeRate: number;
+    signedChangePrice: number;
+    signedChangeRate: number;
+}
