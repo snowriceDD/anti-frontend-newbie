@@ -6,9 +6,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 export const AppView = () => {
-    const [value, setValue] = useState(0);
     const [eurInfo, setEurInfo] = useState(0);
-    
+    const [enteredNum, setEnterdNum] = useState("0");
 
     useEffect(() => {
         getEurInfo().then((value) => {
@@ -17,9 +16,14 @@ export const AppView = () => {
         
         return () => {};
     }, []);
-    function won(e:number) {e.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-    // const won = value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    const euro = (value*eurInfo.basePrice).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+    const changeEnteredNum = (e : string) => {
+        const value: string = e;
+        const removedCommaValue: number = Number(value.replaceAll(",", ""));
+        setEnterdNum(removedCommaValue.toLocaleString());
+     };
+
+    const euro = (parseFloat(enteredNum)*eurInfo.basePrice).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",").toLocaleString();
 
     if (!eurInfo) return null;
     return (
@@ -39,9 +43,11 @@ export const AppView = () => {
             <div>받을때 : {eurInfo.ttBuyingPrice}</div>
           </div>
           <hr />
-          <input value={value}
+          <input
+            type='text'
+            value={enteredNum}
             onChange={(e) => {
-            setValue((e.target.value));
+            changeEnteredNum(e.target.value);
             }}/> 유로 ▶︎ <input disabled value={euro}></input> 원
         </div>
       );
