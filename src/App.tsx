@@ -1,4 +1,3 @@
-import { getEurInfo } from './component/model/Call';
 import { AppView } from './component/view/AppView'
 // import { Call } from './component/model/Call';
 // import { Exchanger } from './component/viewModel/Exchanger';

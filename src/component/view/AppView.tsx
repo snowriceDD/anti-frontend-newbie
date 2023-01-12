@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export const AppView = () => {
     const [eurInfo, setEurInfo] = useState(0);
-    const [enteredNum, setEnterdNum] = useState("0");
+    // const [enteredNum, setEnterdNum] = useState("0");
 
     useEffect(() => {
         getEurInfo().then((value) => {
@@ -16,16 +16,9 @@ export const AppView = () => {
         
         return () => {};
     }, []);
+
     
-    const changeEnteredNum = (e : string) => {
-        const value: string = e;
-        const removedCommaValue: number = Number(value.replaceAll(",", ""));
-        setEnterdNum(removedCommaValue.toLocaleString());
-     };
 
-    const euro = (parseFloat(enteredNum)*eurInfo.basePrice).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",").toLocaleString();
-
-    if (!eurInfo) return null;
     return (
         <div className="App">
           <div>환율기준 (1 유로)</div>
@@ -43,12 +36,7 @@ export const AppView = () => {
             <div>받을때 : {eurInfo.ttBuyingPrice}</div>
           </div>
           <hr />
-          <input
-            type='text'
-            value={enteredNum}
-            onChange={(e) => {
-            changeEnteredNum(e.target.value);
-            }}/> 유로 ▶︎ <input disabled value={euro}></input> 원
+          <Exchanger/>
         </div>
       );
 };
